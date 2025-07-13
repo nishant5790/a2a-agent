@@ -2,6 +2,9 @@
 
 This repository contains code for implementing the Agent-to-Agent (A2A) protocol. The A2A protocol enables secure, decentralized communication between autonomous agents, commonly used in decentralized identity and verifiable credential ecosystems.
 
+![A2a flow](a2a_sample/flow.png)
+
+
 ## Features
 
 - Modular agent architecture
