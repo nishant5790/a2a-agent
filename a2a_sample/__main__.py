@@ -1,4 +1,3 @@
-# this is the main file which will run the server .
 import uvicorn
 from a2a.server.apps import A2AStarletteApplication
 from a2a.server.request_handlers import DefaultRequestHandler
@@ -9,37 +8,36 @@ from agent_executor import GreetingAgentExecutor
 
 def main():
     skill = AgentSkill(
-        id="hello world",
+        id="hello_world",
         name="Greet",
-        description="A skill that greets the user.",
-        tags=["greeting","hello", "welcome"],
-        examples=["Hello, how are you?", "Hi there!"]
+        description="Return a greeting",
+        tags=["greeting", "hello", "world"],
+        examples=["Hey", "Hello", "Hi"],
     )
-    
-    
+
     agent_card = AgentCard(
         name="Greeting Agent",
-        description="An agent that greets users.",
-        url="http://localhost:9000",
+        description="A simple agent that returns a greeting",
+        url="http://localhost:9999/",
         defaultInputModes=["text"],
         defaultOutputModes=["text"],
         skills=[skill],
         version="1.0.0",
-        capabilities=AgentCapabilities()
+        capabilities=AgentCapabilities(),
     )
 
-
-    request_handler =  DefaultRequestHandler(
-        agent_executor= GreetingAgentExecutor(),
+    request_handler = DefaultRequestHandler(
+        agent_executor=GreetingAgentExecutor(),
         task_store=InMemoryTaskStore(),
     )
 
-    server =  A2AStarletteApplication(
-        http_handler = request_handler,
+    server = A2AStarletteApplication(
+        http_handler=request_handler,
         agent_card=agent_card,
     )
 
-    uvicorn.run(server.build(), host="0.0.0", port=8000)
+    uvicorn.run(server.build(), host="0.0.0.0", port=9999)
+
 
 if __name__ == "__main__":
     main()

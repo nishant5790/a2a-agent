@@ -9,7 +9,7 @@ class GreetingAgent(BaseModel):
     """Greeting agent that returns a greeting"""
 
     async def invoke(self) -> str:
-        return "Hello world! I am your friendly agent here to greet you."
+        return "Hello there! How can I assist you today?"
 
 
 class GreetingAgentExecutor(AgentExecutor):
@@ -19,7 +19,7 @@ class GreetingAgentExecutor(AgentExecutor):
 
     async def execute(self, context: RequestContext, event_queue: EventQueue):
         result = await self.agent.invoke()
-        event_queue.enqueue_event(new_agent_text_message(result))
+        await event_queue.enqueue_event(new_agent_text_message(result))
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue):
         raise Exception("Cancel not supported")

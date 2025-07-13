@@ -13,7 +13,7 @@ from a2a.types import (
 )
 
 PUBLIC_AGENT_CARD_PATH = "/.well-known/agent.json"
-BASE_URL = "http://localhost:9000"
+BASE_URL = "http://localhost:9999"
 
 
 async def main() -> None:
